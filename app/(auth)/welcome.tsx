@@ -1,21 +1,19 @@
-import Button from "@/components/Button";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import React from "react";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
-import { colors, spacingY } from "@/constants/theme";
+import { colors, spacingX, spacingY } from "@/constants/theme";
 import { verticalScale } from "@/utils/styling";
-import { useRouter } from "expo-router";
-import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import Animated, { Easing, FadeIn, FadeInDown } from "react-native-reanimated";
+import Animated, {FadeIn} from "react-native-reanimated"
+import Button from "@/components/Button"
 
 const welcome = () => {
-  const router = useRouter()
   return (
     <ScreenWrapper>
       <View style={styles.conainer}>
         {/* Login button */}
         <View>
-          <TouchableOpacity onPress={()=> router.push("/(auth)/login")} style={styles.loginButton}>
+          <TouchableOpacity style={styles.loginButton}>
             <Typo fontWeight={"500"}>Sign in</Typo>
           </TouchableOpacity>
 
@@ -29,48 +27,25 @@ const welcome = () => {
 
         {/* footer */}
 
-        <Animated.View style={styles.footer}>
-          <Animated.View
-            entering={FadeInDown.duration(1000).easing(Easing.in(Easing.cubic))}
-            style={{ alignItems: "center" }}
-          >
-            <Typo size={30} fontWeight={"800"}>
-              Always take control
-            </Typo>
-            <Typo size={30} fontWeight={"800"}>
-              of your finances
-            </Typo>
-          </Animated.View>
+        <View style={styles.footer}>
+          <View style={{ alignItems: "center" }}>
+            <Typo size={30} fontWeight={"800"}>Always take control</Typo>
+            <Typo size={30} fontWeight={"800"}>of your finances</Typo>
+          </View>
 
-          <Animated.View
-            entering={FadeInDown.duration(1000)
-              .delay(100)
-              .easing(Easing.in(Easing.cubic))}
-            style={{ alignItems: "center", gap: 2 }}
-          >
-            <Typo size={17} color={colors.textLight}>
-              Finances must be arranged to set a better
-            </Typo>
-            <Typo size={17} color={colors.textLight}>
-              lifestyle in the future
-            </Typo>
-          </Animated.View>
+          <View style={{alignItems: "center"}}>
+          <Typo size={17} color={colors.textLight}>Finances must be arranged to set a better</Typo>
+          <Typo size={17} color={colors.textLight}>lifestyle in the future</Typo>
+          </View>
 
           {/* Button */}
-          <Animated.View
-            entering={FadeInDown.duration(1000)
-              .delay(100)
-              .easing(Easing.in(Easing.cubic))}
-            style={styles.buttonContainer}
-          >
-            {/*   */}
-            <Button onPress={()=> router.push("/(auth)/register")}>
-              <Typo size={22} color={colors.neutral900} fontWeight="600">
-                Get Started
-              </Typo>
+          <View style={styles.buttonContainer}>
+              {/*   */}
+            <Button>
+              <Typo size={22} color={colors.neutral900} fontWeight="600">Get Started</Typo>
             </Button>
-          </Animated.View>
-        </Animated.View>
+          </View>
+        </View>
       </View>
     </ScreenWrapper>
   );
